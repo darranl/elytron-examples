@@ -38,6 +38,8 @@ import javax.servlet.http.HttpServletResponse;
 @ServletSecurity(httpMethodConstraints = { @HttpMethodConstraint(value = "GET", rolesAllowed = { "Users" }) })
 public class SecuredServlet extends HttpServlet {
 
+    private static final String NODE = System.getProperty("jboss.node.name");
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (PrintWriter writer = resp.getWriter()) {
@@ -49,6 +51,11 @@ public class SecuredServlet extends HttpServlet {
             writer.print(" Current Principal '");
             Principal user = req.getUserPrincipal();
             writer.print(user != null ? user.getName() : "NO AUTHENTICATED USER");
+            writer.print("'");
+            writer.println("    </p>");
+            writer.println("    <p>");
+            writer.print(" Node '");
+            writer.print(NODE);
             writer.print("'");
             writer.println("    </p>");
             writer.println("  </body>");
