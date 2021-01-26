@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/info")
 public class InfoServlet extends HttpServlet {
 
-    private static final String NODE = System.getProperty("jboss.node.name");
+    static final String NODE = System.getProperty("jboss.node.name");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
