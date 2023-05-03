@@ -35,6 +35,11 @@
             <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+			<groupId>jakarta.authorization</groupId>
+			<artifactId>jakarta.authorization-api</artifactId>
+            <scope>provided</scope>
+		</dependency>
 
         <dependency>
             <groupId>junit</groupId>

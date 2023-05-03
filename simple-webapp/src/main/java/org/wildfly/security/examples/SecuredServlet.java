@@ -19,8 +19,9 @@ package org.wildfly.security.examples;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.Principal;
 
+import jakarta.security.jacc.PolicyContext;
+import jakarta.security.jacc.PolicyContextException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpMethodConstraint;
 import jakarta.servlet.annotation.ServletSecurity;
@@ -39,20 +40,19 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SecuredServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (PrintWriter writer = resp.getWriter()) {
-            writer.println("<html>");
-            writer.println("  <head><title>Secured Servlet</title></head>");
-            writer.println("  <body>");
-            writer.println("    <h1>Secured Servlet</h1>");
-            writer.println("    <p>");
-            writer.print(" Current Principal '");
-            Principal user = req.getUserPrincipal();
-            writer.print(user != null ? user.getName() : "NO AUTHENTICATED USER");
-            writer.print("'");
-            writer.println("    </p>");
-            writer.println("  </body>");
-            writer.println("</html>");
+    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        out.println("Hello World!");
+        try {
+            out.println("PolicyContext.getHandlerKeys = " + PolicyContext.getHandlerKeys());
+            String key = HttpServletRequest.class.getName();
+            out.println("looking for " + key);
+            HttpServletRequest request = PolicyContext.getContext(key);
+            out.println(request == null ? "Request is null" : request.getClass().getName());
+        } catch (PolicyContextException | IllegalArgumentException e) {
+            e.printStackTrace(out);
+        } finally {
+            out.close();
         }
     }
 
