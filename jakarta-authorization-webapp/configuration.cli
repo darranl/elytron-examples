@@ -1,0 +1,3 @@
+
+/subsystem=undertow:write-attribute(name=default-security-domain, value=MyApp)
+/subsystem=undertow/application-security-domain=MyApp:add(security-domain=ApplicationDomain, enable-jacc=true)
