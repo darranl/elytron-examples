@@ -1,0 +1,6 @@
+#/subsystem=elytron/policy=jacc:add(jacc-policy={})
+/subsystem=logging/logger=io.undertow:add(level=TRACE)
+/subsystem=logging/logger=org.wildfly.security:add(level=TRACE)
+/subsystem=undertow:write-attribute(name=default-security-domain, value=MyApp)
+#/subsystem=undertow/application-security-domain=MyApp:add(security-domain=ApplicationDomain, enable-jacc=true)
+/subsystem=undertow/application-security-domain=MyApp:add(security-domain=ApplicationDomain)
