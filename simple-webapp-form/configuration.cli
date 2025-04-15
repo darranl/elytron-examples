@@ -4,3 +4,4 @@
 /subsystem=undertow:write-attribute(name=default-security-domain, value=MyApp)
 #/subsystem=undertow/application-security-domain=MyApp:add(security-domain=ApplicationDomain, enable-jacc=true)
 /subsystem=undertow/application-security-domain=MyApp:add(security-domain=ApplicationDomain)
+/subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=allow-unescaped-characters-in-url, value=true)
