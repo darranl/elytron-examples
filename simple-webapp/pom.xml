@@ -15,7 +15,7 @@
         <wildfly.home>${project.build.directory}/wildfly</wildfly.home>
 
         <version.wildfly.maven.plugin>5.0.1.Final</version.wildfly.maven.plugin>
-        <version.wildfly>36.0.0.Final</version.wildfly>
+        <version.wildfly>37.0.0.Beta1-SNAPSHOT</version.wildfly>
     </properties>
 
     <dependencyManagement>
