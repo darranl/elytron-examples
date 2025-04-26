@@ -1,0 +1,26 @@
+#################
+# Curl Commands #
+#################
+
+#Valid Call
+curl --digest --user testUser:password1! -v http://loca2lhost:8080/simple-webapp/secured
+
+#Bad User
+curl --digest --user testUser2:password1! -v http://localhost:8080/simple-webapp/secured
+
+#Bad Password
+curl --digest --user testUser:password21! -v http://localhost:8080/simple-webapp/secured
+
+
+################
+# CLI Commands #
+################
+
+# Valid Call
+bin/jboss-cli.sh -c --controller=localhost:8080 -u=testUser -p=password1! --no-local-auth
+
+# Bad User
+bin/jboss-cli.sh -c --controller=localhost:8080 -u=testUser2 -p=password1! --no-local-auth
+
+# Bad Password
+bin/jboss-cli.sh -c --controller=localhost:8080 -u=testUser -p=password2! --no-local-auth
